@@ -90,28 +90,28 @@ const GamePanel = () => {
 
             <div className='buttonDiv'>
                 <Button 
-                    className='mx-2 button' 
+                    className='m-2 button' 
                     onClick={(e) => 
                         handleButtonClick(e, currentCountry)}
                     >
                     {buttonNames[0]}
                 </Button>
                 <Button 
-                    className='mx-2 button' 
+                    className='m-2 button' 
                     onClick={(e) => 
                         handleButtonClick(e, currentCountry)}
                     >
                     {buttonNames[1]}
                 </Button>                
                 <Button 
-                    className='mx-2 button' 
+                    className='m-2 button' 
                     onClick={(e) => 
                         handleButtonClick(e, currentCountry)}
                     >
                     {buttonNames[2]}
                 </Button>                
                 <Button 
-                    className='mx-2 button' 
+                    className='m-2 button' 
                     onClick={(e) => 
                         handleButtonClick(e, currentCountry)}
                     >
