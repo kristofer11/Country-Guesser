@@ -1,6 +1,6 @@
 import { Button } from 'reactstrap';
 import { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 const GamePanel = () => {
     const [currentCountry, setCurrentCountry] = useState(null);
@@ -33,6 +33,25 @@ const GamePanel = () => {
 
     }, []); 
 
+    const handleButtonClick = (e, currentCountry) => {
+        const buttons = document.querySelectorAll('.button')
+
+        if (e.target.textContent == currentCountry.name) {
+            countryDisplay.textContent = `Yes, the correct country is ${currentCountry.name}!`
+            console.log('correct!')
+        } else {
+            countryDisplay.textContent = `Sorry that's incorrect! The correct country is ${currentCountry.name}`
+            console.log('incorrect!')
+        }
+//NOT CURRENTLY WORKING
+//FIX THIS
+//MUST REMOVE EVENT LISTENERS AFTER GUESS IS MADE
+//THEN MUST ADD EVENT LISTENERS BACK AFTER GAME IS RESET
+//(RESET BUTTON NEEDS TO BE IMPLEMENTED)
+        buttons.forEach((button) => {
+            button.removeEventListener('click', handleButtonClick)
+        })
+    }   
 
     return (
         <>
@@ -70,10 +89,34 @@ const GamePanel = () => {
             </div>
 
             <div className='buttonDiv'>
-                <Button className='mx-2'>{buttonNames[0]}</Button>
-                <Button className='mx-2'>{buttonNames[1]}</Button>
-                <Button className='mx-2'>{buttonNames[2]}</Button>
-                <Button className='mx-2'>{buttonNames[3]}</Button>
+                <Button 
+                    className='mx-2 button' 
+                    onClick={(e) => 
+                        handleButtonClick(e, currentCountry)}
+                    >
+                    {buttonNames[0]}
+                </Button>
+                <Button 
+                    className='mx-2 button' 
+                    onClick={(e) => 
+                        handleButtonClick(e, currentCountry)}
+                    >
+                    {buttonNames[1]}
+                </Button>                
+                <Button 
+                    className='mx-2 button' 
+                    onClick={(e) => 
+                        handleButtonClick(e, currentCountry)}
+                    >
+                    {buttonNames[2]}
+                </Button>                
+                <Button 
+                    className='mx-2 button' 
+                    onClick={(e) => 
+                        handleButtonClick(e, currentCountry)}
+                    >
+                    {buttonNames[3]}
+                </Button>            
             </div>
         </div >            
         ) : 
