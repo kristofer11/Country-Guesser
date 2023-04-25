@@ -1,6 +1,6 @@
 #root {
-  text-align: center;
-  padding-top: 2rem;
+    text-align: center;
+    padding-top: 5rem;
 }
 
 * {
@@ -12,14 +12,15 @@
     flex-direction: column;
     align-items: center;
     max-width: 777px;
-    background-color: #D76F3011;
+    background-color: #A7BC5B;
     padding: 1rem;
     border: 1px solid #de593522;
     border-radius: 5%;
 }
 
 body {
-    background-color: #172D13;
+    /* background-color: #172D13; */
+    background-color: black;
     display: flex;
     justify-content: center;
     color: white;
@@ -33,7 +34,6 @@ body {
 
 .pageTitle {
     font-size: 3rem;
-    color: #6BB77B;
     margin: 0;
 }
 
@@ -53,7 +53,7 @@ body {
 
 #countryNameDisplay {
     font-size: 3.3rem;
-    color: rgb(115, 255, 0);
+    color: red;
 }
 
 #flag {
@@ -70,52 +70,76 @@ body {
 button {
     border-radius: 8px;
     border: 1px solid transparent;
-    padding: 0.6em 1.2em;
+    padding: 0.5em 1em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #D76F30 !important;
+    background-color: orange;
     cursor: pointer;
     transition: border-color 0.25s;
-  }
-  button:hover {
-    border-color: #73a24e;
-  }
-  button:focus,
-  button:focus-visible {
-    transform: scale(.95);
-  }
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+button:focus,
+button:focus-visible
+button:active
+{
+    transform: scale(.99);
+}
 
 .nextCountryDiv {
     display: flex;
     justify-content: center;
-    
+
 }
 
 #nextCountryBtn {
     font-size: 2rem;
-    margin-bottom: 1rem;
     background-color: red !important;
     animation: growShrink 2s ease-in-out infinite;
 }
 
 #currentStreakDisplay {
     font-size: 1.3rem;
+    margin: 0;
 }
 
 #currentStreakDisplay {
-    animation: growShrink 3s ease-in-out infinite;
-  }
-  
-  @keyframes growShrink {
+    animation: growShrink 1s ease-in-out infinite;
+}
+
+@keyframes growShrink {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
+
     50% {
-      transform: scale(1.05);
+        transform: scale(1.05);
     }
+
     100% {
-      transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 576px) {
+    #root {
+        padding-top: 2rem;
+    }
+
+    .pageTitle {
+        font-size: 2.2rem;
+        font-weight: 900;
+    }
+
+    button {
+        font-size: .8rem;
+    }
+
+    .infoItem {
+        font-size: 1.2rem;
     }
   }
-  
