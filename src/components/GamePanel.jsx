@@ -39,9 +39,10 @@ const GamePanel = () => {
         const buttons = document.querySelectorAll('.button');
         const countryDisplay = document.getElementById('countryDisplay');
         const pageSubtitle = document.getElementById('pageSubtitle');
+        const infoItems = document.querySelectorAll('.infoItem')
 
         if (e.target.textContent == currentCountry.name) {
-            countryDisplay.textContent = `Yes, the correct country is`;
+            countryDisplay.textContent = `Yes! The correct country is`;
             setCurrentStreak(currentStreak + 1);
         } else {
             countryDisplay.textContent = `Sorry that's incorrect! The correct country is`
@@ -50,10 +51,12 @@ const GamePanel = () => {
         buttons.forEach((button) => {
             button.disabled = true;
         })
+        infoItems.forEach(infoItem => infoItem.style.display = 'none')
 
         setCountryNameDisplay('block');
         nextCountryBtn.style.display = 'block';
         pageSubtitle.style.display = 'none';
+        buttons.forEach(button => button.style.display = 'none')
     }
 
     const handleNextCountry = async (e, currentCountry) => {
@@ -62,6 +65,7 @@ const GamePanel = () => {
         const randomIndex = Math.floor(Math.random() * countries.length);
         const randomCountry = countries[randomIndex];
         setCurrentCountry(randomCountry);
+        const infoItems = document.querySelectorAll('.infoItem')
 
         const names = [randomCountry.name];
         while (names.length < 4) {
@@ -81,7 +85,8 @@ const GamePanel = () => {
         countryDisplay.textContent = 'Which country am I??';
         nextCountryBtn.style.display = 'none';
         setCountryNameDisplay('none');
-
+        buttons.forEach(button => button.style.display = 'block')
+        infoItems.forEach(item => item.style.display = 'block')
     }
 
     return (
@@ -110,7 +115,7 @@ const GamePanel = () => {
 
                     <div className='countryInfoDiv'>
                         <ul className='countryInfoList'>
-                            <li className='infoItem'>
+                            <li id='flagItem'>
                                 <img className='flag' id='flag' src={currentCountry.flag} />
                             </li>
                             <li className='infoItem population'>

@@ -59,6 +59,10 @@ body {
     width: 127px;
 }
 
+#flagItem {
+    list-style: none;
+}
+
 .buttonDiv {
     display: flex;
     gap: 1rem;
