@@ -12,9 +12,8 @@
     flex-direction: column;
     align-items: center;
     max-width: 777px;
-    background-color: #A7BC5B;
+    /* background-color: #A7BC5B; */
     padding: 1rem;
-    border: 1px solid #de593522;
     border-radius: 5%;
 }
 
@@ -77,6 +76,7 @@ button {
     background-color: orange;
     cursor: pointer;
     transition: border-color 0.25s;
+    color: white;
 }
 
 button:hover {
