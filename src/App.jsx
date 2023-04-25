@@ -9,6 +9,7 @@ function App() {
     <>
         <h1 className='pageTitle'>Country Guesser!</h1>
         <h2 className='pageSubtitle'>How many countries can you guess based on the info given?</h2>
+
         < GamePanel />
     </>
   )

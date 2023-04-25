@@ -22,18 +22,19 @@ const GamePanel = () => {
                     names.push(randomName);
                 }
             }
- 
+
             const shuffledNames = names.sort(() => Math.random() - 0.5);
             setButtonNames(shuffledNames);
             console.log(buttonNames)
         };
 
-        getRandomCountry(); 
+        getRandomCountry();
         console.log(currentCountry);
 
-    }, []); 
+    }, []);
 
     const handleButtonClick = (e, currentCountry) => {
+        const nextCountryBtn = document.getElementById('nextCountryBtn')
         const buttons = document.querySelectorAll('.button')
 
         if (e.target.textContent == currentCountry.name) {
@@ -43,22 +44,52 @@ const GamePanel = () => {
             countryDisplay.textContent = `Sorry that's incorrect! The correct country is ${currentCountry.name}`
             console.log('incorrect!')
         }
-//NOT CURRENTLY WORKING
-//FIX THIS
-//MUST REMOVE EVENT LISTENERS AFTER GUESS IS MADE
-//THEN MUST ADD EVENT LISTENERS BACK AFTER GAME IS RESET
-//(RESET BUTTON NEEDS TO BE IMPLEMENTED)
         buttons.forEach((button) => {
-            button.removeEventListener('click', handleButtonClick)
+            button.disabled = true;
         })
+
+        nextCountryBtn.style.display = 'block';
     }   
+
+    const handleNextCountry = async (e, currentCountry) => {
+        const response = await axios.get('https://restcountries.com/v2/all');
+        const countries = response.data;
+        const randomIndex = Math.floor(Math.random() * countries.length);
+        const randomCountry = countries[randomIndex];
+        setCurrentCountry(randomCountry);
+
+        const names = [randomCountry.name];
+        while (names.length < 4) {
+            const randomName = countries[Math.floor(Math.random() * countries.length)].name;
+            if (!names.includes(randomName)) {
+                names.push(randomName);
+            }
+        }
+
+        const buttons = document.querySelectorAll('.button');
+        const shuffledNames = names.sort(() => Math.random() - 0.5);
+        setButtonNames(shuffledNames)
+        buttons.forEach((button) => {
+            button.disabled = false;
+        })
+
+        countryDisplay.textContent = 'Which country am I??'
+
+    }
 
     return (
         <>
         { currentCountry ? (
         <div>
+            <Button 
+                style={{display: 'none'}} 
+                id='nextCountryBtn'
+                onClick={handleNextCountry}
+            >
+                    Next Country
+                </Button>
             <div className='countryDisplayDiv'>
-                <h3 className='countryDisplay' id='countryDisplay'>Which country am I?? { currentCountry.name }</h3>
+                <h3 className='countryDisplay' id='countryDisplay'>Which country am I??</h3>
             </div>
 
             <div className='countryInfoDiv'>
@@ -119,7 +150,7 @@ const GamePanel = () => {
                 </Button>            
             </div>
         </div >            
-        ) : 
+        ) :
             <p>Loading country data</p>
     }        
         </>
