@@ -95,7 +95,7 @@ const GamePanel = () => {
                 <div>
                     <div id='currentStreakDiv'>
                         <p id='currentStreakDisplay'>
-                            Current Streak: {currentStreak}
+                            Current Streak: <span style={{color: 'lime', fontSize: '1.8rem'}}>{currentStreak}</span>
                         </p>
                     </div>
                     <div className='nextCountryDiv'>

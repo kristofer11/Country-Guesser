@@ -81,6 +81,7 @@ button {
     cursor: pointer;
     transition: border-color 0.25s;
     color: white;
+    box-shadow: 1px 1px 1px 1px grey;
 }
 
 button:hover {
@@ -102,8 +103,13 @@ button:active
 
 #nextCountryBtn {
     font-size: 2rem;
-    background-color: red !important;
-    animation: growShrink 2s ease-in-out infinite;
+    background-color: green !important;
+    /* animation: growShrink 2s ease-in-out infinite; */
+    box-shadow: 2px 2px 2px grey;
+}
+
+#nextCountryBtn:active {
+    transform: scale(0.95);
 }
 
 #currentStreakDisplay {
