@@ -160,8 +160,19 @@ button:active
     }
 
     .pageTitle {
-        font-size: 2.2rem;
-        font-weight: 900;
+        display: none;
+    }
+
+    .pageTitleSmall {
+        display: block;
+    }
+
+    .pageSubtitle {
+        font-size: 1rem;
+    }
+
+    .countryDisplay {
+        font-size: 1.3rem;
     }
 
     button {
@@ -170,5 +181,8 @@ button:active
 
     .infoItem {
         font-size: 1.2rem;
+    }
+    .footer {
+        display: none;
     }
   }
