@@ -38,26 +38,35 @@ const GamePanel = () => {
         const nextCountryBtn = document.getElementById('nextCountryBtn')
         const buttons = document.querySelectorAll('.button');
         const countryDisplay = document.getElementById('countryDisplay');
+        const countryNameDisplay= document.getElementById('countryNameDisplay');
         const pageSubtitle = document.getElementById('pageSubtitle');
-        const infoItems = document.querySelectorAll('.infoItem')
+        const infoItems = document.querySelectorAll('.infoItem');
 
         if (e.target.textContent == currentCountry.name) {
-            countryDisplay.textContent = `Yes! The correct country is`;
+            countryDisplay.textContent = `👍 Yes! The correct country is`;
             countryDisplay.style.color = 'green';
-            // countryNameDisplay.style.color = 'green';
-            // setCountryNameDisplay('block');
+            countryNameDisplay.style.color = 'green';
+            setCountryNameDisplay('block');
             setCurrentStreak(currentStreak + 1);
         } else {
-            countryDisplay.textContent = `Sorry that's incorrect! The correct country is`;
+            countryDisplay.textContent = `😢 That's incorrect!  The correct country is`;
             countryDisplay.style.color = 'red';
+            setCountryNameDisplay('block');
+            countryNameDisplay.style.color = 'red';
             setCurrentStreak(0)
         }
+
+        const pageTitleSmall = document.getElementById('pageTitleSmall');
+        pageTitleSmall.style.display = 'block';
+        const pageTitle = document.getElementById('pageTitle');
+        pageTitle.style.display = 'none';
+
         buttons.forEach((button) => {
             button.disabled = true;
         })
         infoItems.forEach(infoItem => infoItem.style.display = 'none')
 
-        setCountryNameDisplay('block');
+        // setCountryNameDisplay('block');
         nextCountryBtn.style.display = 'block';
         pageSubtitle.style.display = 'none';
         buttons.forEach(button => button.style.display = 'none')

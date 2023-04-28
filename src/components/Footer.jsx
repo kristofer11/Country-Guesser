@@ -1,10 +1,9 @@
 const Footer = () => {
   return (
-    <div className="footer">
-        <p>Coming soon: a leader board right here on the site!</p>
+    <footer className="footer">
         <p>* Special thanks to the middle schoolers at MCS for their work in testing this prototype.</p>
-        <p>Thanks to HL for the </p>
-    </div>
+        <p>&copy; 2023 K. Hvattum</p>
+    </footer>
   )
 }
 
