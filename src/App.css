@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Poltawski+Nowy&display=swap');
+}
+
 #root {
     text-align: center;
     padding-top: 5rem;
@@ -5,6 +10,7 @@
 
 * {
     text-align: center;
+    /* font-family: 'Poltawski Nowy', serif; */
 }
 
 .app {
@@ -19,7 +25,7 @@
 
 body {
     /* background-color: #172D13; */
-    background-color: black;
+    background-color: #212122;
     display: flex;
     justify-content: center;
     color: white;
@@ -52,7 +58,8 @@ body {
 
 #countryNameDisplay {
     font-size: 3.3rem;
-    color: red;
+    /* color: red; */
+    font-family: 'Bruno Ace', cursive;
 }
 
 #flag {
@@ -119,6 +126,10 @@ button:active
 
 #currentStreakDisplay {
     animation: growShrink 1s ease-in-out infinite;
+}
+
+.footer {
+    margin-top: 9rem;
 }
 
 @keyframes growShrink {

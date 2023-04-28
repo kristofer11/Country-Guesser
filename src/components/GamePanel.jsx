@@ -43,9 +43,13 @@ const GamePanel = () => {
 
         if (e.target.textContent == currentCountry.name) {
             countryDisplay.textContent = `Yes! The correct country is`;
+            countryDisplay.style.color = 'green';
+            // countryNameDisplay.style.color = 'green';
+            // setCountryNameDisplay('block');
             setCurrentStreak(currentStreak + 1);
         } else {
-            countryDisplay.textContent = `Sorry that's incorrect! The correct country is`
+            countryDisplay.textContent = `Sorry that's incorrect! The correct country is`;
+            countryDisplay.style.color = 'red';
             setCurrentStreak(0)
         }
         buttons.forEach((button) => {
