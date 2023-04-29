@@ -131,7 +131,9 @@ const GamePanel = () => {
                             <li id='flagItem'>
                                 <img className='flag' id='flag' src={currentCountry.flag} />
                             </li>
-                            <li className='infoItem population'>
+
+{/* REMOVED POPULATION AND AREA FOR NOW AS RESEARCH GROUP RARELY FOUND THEM USEFUL */}
+                            {/* <li className='infoItem population'>
                                 <p>
                                     Population:
                                     <span id='population'> {currentCountry.population}</span>
@@ -143,11 +145,11 @@ const GamePanel = () => {
                                     <span id='area'> {currentCountry.area} </span>
                                     square miles
                                 </p>
-                            </li>
+                            </li> */}
                             <li className='infoItem region'>
                                 <p>
-                                    Region:
-                                    <span id='region'> {currentCountry.region} </span>
+                                    Capital:
+                                    <span id='region'> {currentCountry.capital} </span>
                                 </p>
                             </li>
 
