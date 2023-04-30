@@ -48,12 +48,14 @@ const GamePanel = () => {
             countryNameDisplay.style.color = 'green';
             setCountryNameDisplay('block');
             setCurrentStreak(currentStreak + 1);
+            document.body.style.backgroundColor = 'blue';
         } else {
             countryDisplay.textContent = `😢 That's incorrect!  The correct country is`;
             countryDisplay.style.color = 'red';
             setCountryNameDisplay('block');
             countryNameDisplay.style.color = 'red';
-            setCurrentStreak(0)
+            setCurrentStreak(0);
+            document.body.style.backgroundColor = 'orange'
         }
 
         const pageTitleSmall = document.getElementById('pageTitleSmall');
@@ -99,7 +101,9 @@ const GamePanel = () => {
         nextCountryBtn.style.display = 'none';
         setCountryNameDisplay('none');
         buttons.forEach(button => button.style.display = 'block')
-        infoItems.forEach(item => item.style.display = 'block')
+        infoItems.forEach(item => item.style.display = 'block');
+
+        document.body.style.backgroundColor = '#212122'
     }
 
     return (
