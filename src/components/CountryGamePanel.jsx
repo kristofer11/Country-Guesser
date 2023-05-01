@@ -48,14 +48,14 @@ const GamePanel = () => {
             countryNameDisplay.style.color = 'green';
             setCountryNameDisplay('block');
             setCurrentStreak(currentStreak + 1);
-            document.body.style.backgroundColor = 'blue';
+            document.body.style.backgroundColor = 'navy';
         } else {
             countryDisplay.textContent = `😢 That's incorrect!  The correct country is`;
             countryDisplay.style.color = 'red';
             setCountryNameDisplay('block');
             countryNameDisplay.style.color = 'red';
             setCurrentStreak(0);
-            document.body.style.backgroundColor = 'orange'
+            document.body.style.backgroundColor = 'darkorange'
         }
 
         const pageTitleSmall = document.getElementById('pageTitleSmall');
@@ -190,7 +190,6 @@ const GamePanel = () => {
                             {buttonNames[3]}
                         </Button>
                     </div>
-
                 </div >
             ) :
                 <p>Loading country data</p>
