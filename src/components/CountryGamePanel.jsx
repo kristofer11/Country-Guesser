@@ -137,13 +137,13 @@ const GamePanel = () => {
                             </li>
 
 {/* REMOVED POPULATION AND AREA FOR NOW AS RESEARCH GROUP RARELY FOUND THEM USEFUL */}
-                            {/* <li className='infoItem population'>
+                            <li className='infoItem population'>
                                 <p>
                                     Population:
                                     <span id='population'> {currentCountry.population}</span>
                                 </p>
                             </li>
-                            <li className='infoItem area'>
+                            {/* <li className='infoItem area'>
                                 <p>
                                     Area:
                                     <span id='area'> {currentCountry.area} </span>
@@ -152,8 +152,8 @@ const GamePanel = () => {
                             </li> */}
                             <li className='infoItem region'>
                                 <p>
-                                    Capital:
-                                    <span id='region'> {currentCountry.capital} </span>
+                                    Region:
+                                    <span id='region'> {currentCountry.region} </span>
                                 </p>
                             </li>
 
