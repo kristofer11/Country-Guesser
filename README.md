@@ -2,7 +2,7 @@
  
  A simple guessing game built with React (via Vite) and utilizing the REST Countries API. Hopefully it is still functional, but evidently the api will be shutting down at some point in May 2023.
 
- # testing
+ # Testing
  
  I had an absolute blast with this project because of the reaction I received from the middle school students I was teaching at the time. They got really into the game and kept a leader board for who could get the highest streak. They also let me know what features they would like to see and I did my best to accommodate. 
 
