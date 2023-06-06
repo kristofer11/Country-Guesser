@@ -1,6 +1,8 @@
 import { Button } from 'reactstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import LeaderModal from './LeaderModal';
+
 
 const GamePanel = () => {
     const [currentCountry, setCurrentCountry] = useState(null);
@@ -38,7 +40,7 @@ const GamePanel = () => {
         const nextCountryBtn = document.getElementById('nextCountryBtn')
         const buttons = document.querySelectorAll('.button');
         const countryDisplay = document.getElementById('countryDisplay');
-        const countryNameDisplay= document.getElementById('countryNameDisplay');
+        const countryNameDisplay = document.getElementById('countryNameDisplay');
         const pageSubtitle = document.getElementById('pageSubtitle');
         const infoItems = document.querySelectorAll('.infoItem');
 
@@ -112,7 +114,7 @@ const GamePanel = () => {
                 <div>
                     <div id='currentStreakDiv'>
                         <p id='currentStreakDisplay'>
-                            Current Streak: <span style={{color: 'lime', fontSize: '1.8rem'}}>{currentStreak}</span>
+                            Current Streak: <span style={{ color: 'lime', fontSize: '1.8rem' }}>{currentStreak}</span>
                         </p>
                     </div>
                     <div className='nextCountryDiv'>
@@ -136,7 +138,7 @@ const GamePanel = () => {
                                 <img className='flag' id='flag' src={currentCountry.flag} />
                             </li>
 
-{/* REMOVED POPULATION AND AREA FOR NOW AS RESEARCH GROUP RARELY FOUND THEM USEFUL */}
+                            {/* REMOVED POPULATION AND AREA FOR NOW AS RESEARCH GROUP RARELY FOUND THEM USEFUL */}
                             <li className='infoItem population'>
                                 <p>
                                     Population:
@@ -194,6 +196,7 @@ const GamePanel = () => {
             ) :
                 <p>Loading country data</p>
             }
+            <LeaderModal currentStreak={currentStreak} />
         </div>
     )
 }
