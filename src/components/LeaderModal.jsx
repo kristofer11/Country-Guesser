@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const LeaderModal = ({currentStreak}) => {
+const LeaderModal = ({finalStreak}) => {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
   
@@ -13,11 +13,27 @@ const LeaderModal = ({currentStreak}) => {
       setMessage(e.target.value);
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
       // Do something with the form data (e.g., send it to a server)
+      
+      try {
+        const data = {
+          name: name,
+          message: message,
+          streak: finalStreak
+        };
+  
+        const response = await axios.put('https://secret-mountain-38731.herokuapp.com/api/leaders', data);
+        console.log('Response:', response.data);
+        // Handle the response as needed
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle the error as needed
+      }
       console.log('Name:', name);
       console.log('Message:', message);
+      console.log('Streak:', finalStreak);
       // Reset the form
       setName('');
       setMessage('');
@@ -25,7 +41,8 @@ const LeaderModal = ({currentStreak}) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <h1>Nice job, your streak was {currentStreak}!</h1>
+            <h6>Nice job, your streak was {finalStreak}!</h6>
+            <p>Enter your initials and a brief message to be added to the leader board!</p>
           <Form.Group controlId="formName">
             <Form.Label>Name</Form.Label>
             <Form.Control

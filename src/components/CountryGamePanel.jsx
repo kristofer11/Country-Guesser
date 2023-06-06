@@ -8,6 +8,7 @@ const GamePanel = () => {
     const [currentCountry, setCurrentCountry] = useState(null);
     const [buttonNames, setButtonNames] = useState([]);
     const [currentStreak, setCurrentStreak] = useState(0);
+    const [finalStreak, setFinalStreak] = useState(0);
     const [countryNameDisplay, setCountryNameDisplay] = useState('none');
 
     useEffect(() => {
@@ -56,6 +57,7 @@ const GamePanel = () => {
             countryDisplay.style.color = 'red';
             setCountryNameDisplay('block');
             countryNameDisplay.style.color = 'red';
+            setFinalStreak(currentStreak);
             setCurrentStreak(0);
             // document.body.style.backgroundColor = 'darkorange'
         }
@@ -106,6 +108,8 @@ const GamePanel = () => {
         infoItems.forEach(item => item.style.display = 'block');
 
         document.body.style.backgroundColor = '#212122'
+
+        setFinalStreak(0);
     }
 
     return (
@@ -138,7 +142,7 @@ const GamePanel = () => {
                                 <img className='flag' id='flag' src={currentCountry.flag} />
                             </li>
 
-                            {/* REMOVED POPULATION AND AREA FOR NOW AS RESEARCH GROUP RARELY FOUND THEM USEFUL */}
+                            {/* REMOVED AREA FOR NOW AS RESEARCH GROUP RARELY FOUND IT USEFUL */}
                             <li className='infoItem population'>
                                 <p>
                                     Population:
@@ -196,7 +200,7 @@ const GamePanel = () => {
             ) :
                 <p>Loading country data</p>
             }
-            <LeaderModal currentStreak={currentStreak} />
+            <LeaderModal finalStreak={finalStreak} />
         </div>
     )
 }
