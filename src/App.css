@@ -185,3 +185,15 @@ button:active
         display: none;
     } */
   }
+
+.leaderList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: orangered;
+    flex-wrap: wrap;
+}
+
+  li {
+        list-style-type: none;
+  }

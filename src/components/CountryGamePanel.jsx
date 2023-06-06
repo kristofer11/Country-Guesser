@@ -195,7 +195,6 @@ const GamePanel = () => {
                 <p>Loading country data</p>
             }
         </div>
-
     )
 }
 
