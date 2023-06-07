@@ -53,7 +53,7 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
                             placeholder="Enter your name"
                             value={name}
                             onChange={handleNameChange}
-                            maxLength='3'
+                            maxLength='10'
                         />
                     </Form.Group>
 
