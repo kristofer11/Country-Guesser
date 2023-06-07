@@ -186,9 +186,12 @@ button:active
     } */
   }
 
+.leaderBoard {
+    margin-top: 3rem;
+}
+
 .leaderList {
     display: flex;
-    flex-direction: column;
     gap: 0.5rem;
     color: orangered;
     flex-wrap: wrap;
@@ -196,4 +199,10 @@ button:active
 
   li {
         list-style-type: none;
+  }
+
+  .modalContainer {
+    border: 1px solid blue;
+    padding: 2rem;
+    background-color: grey;
   }

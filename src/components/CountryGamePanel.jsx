@@ -10,6 +10,7 @@ const GamePanel = () => {
     const [currentStreak, setCurrentStreak] = useState(0);
     const [finalStreak, setFinalStreak] = useState(0);
     const [countryNameDisplay, setCountryNameDisplay] = useState('none');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const getRandomCountry = async () => {
@@ -59,6 +60,8 @@ const GamePanel = () => {
             countryNameDisplay.style.color = 'red';
             setFinalStreak(currentStreak);
             setCurrentStreak(0);
+            setShowModal(true);
+            setCurrentCountry(null);
             // document.body.style.backgroundColor = 'darkorange'
         }
 
@@ -114,7 +117,10 @@ const GamePanel = () => {
 
     return (
         <div className='gamePanel'>
+            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} /> )}
+
             {currentCountry ? (
+                !showModal && (
                 <div>
                     <div id='currentStreakDiv'>
                         <p id='currentStreakDisplay'>
@@ -197,10 +203,9 @@ const GamePanel = () => {
                         </Button>
                     </div>
                 </div >
-            ) :
+            )) :
                 <p>Loading country data</p>
             }
-            <LeaderModal finalStreak={finalStreak} />
         </div>
     )
 }
