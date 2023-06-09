@@ -43,22 +43,23 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
     return (
         <div className='modalContainer'>
             {finalStreak ?
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} className='leaderForm'>
                     <h2>Nice job, your streak was {finalStreak}!</h2>
                     <p>Enter your initials and a brief message to be added to the leader board!</p>
                     <Form.Group controlId="formName">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Name </Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter your name"
                             value={name}
                             onChange={handleNameChange}
                             maxLength='10'
+                            minLength={3}
                         />
                     </Form.Group>
 
                     <Form.Group controlId="formMessage">
-                        <Form.Label>Message</Form.Label>
+                        <Form.Label>Message </Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
@@ -76,7 +77,7 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
                 :
                 <div>
                     <h4>Sorry, you couldn't even get one country right! Better luck next time...</h4>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} className='leaderForm'>
                         <Button variant="primary" type="submit">
                             Try Again
                         </Button>

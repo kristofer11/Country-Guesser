@@ -206,3 +206,17 @@ button:active
     padding: 2rem;
     background-color: grey;
   }
+
+  .leaderForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-label {
+    font-size: 1.5rem;
+  }
+
+  input, textarea {
+    font-size: 1.25rem;
+  }
