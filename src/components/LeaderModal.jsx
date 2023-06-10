@@ -73,6 +73,11 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+{/* NEED TO FIX LOGIC FOR 'NO THANKS' BUTTON */}
+                    {/* <Button
+                        onClick = {handleNextCountry}
+                    >
+                        No Thanks!</Button> */}
                 </Form>
                 :
                 <div>
