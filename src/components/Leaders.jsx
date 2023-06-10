@@ -25,10 +25,10 @@ const Leaders = () => {
 
     return (
         <div className='leaderBoard'>
-            <h2 style={{ marginTop: '4rem' }}>Leader Board</h2>
+            <h2 style={{ marginTop: '4rem' }}>Leader Board (top 10)</h2>
 
             {top10Leaders.length > 0 ? (
-                <ul className='leaderList' style={{ marginBottom: '4rem' }}>
+                <ul className='leaderList' style={{ marginBottom: '4rem', textAlign: 'center' }}>
                     {top10Leaders.map((leader) => (
                         <li key={leader.id}>{leader.name}: {leader.streak} <span style={{ color: 'green' }}>||</span></li>
 
