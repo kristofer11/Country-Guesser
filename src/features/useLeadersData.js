@@ -7,7 +7,7 @@ const useLeadersData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://secret-mountain-38731.herokuapp.com/api/leaders');
+        const response = await axios.get('https://country-guesser-server.onrender.com/api/leaders');
         setLeadersData(response.data);
       } catch (error) {
         console.error(error);

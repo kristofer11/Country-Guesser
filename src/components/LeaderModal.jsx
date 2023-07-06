@@ -25,7 +25,7 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
                 streak: finalStreak
             };
 
-            const response = await axios.post('https://secret-mountain-38731.herokuapp.com/api/leaders', data);
+            const response = await axios.post('https://country-guesser-server.onrender.com/api/leaders', data);
             console.log('Response:', response.data);
         } catch (error) {
             console.error('Error:', error);
