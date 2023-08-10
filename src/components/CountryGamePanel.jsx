@@ -2,6 +2,7 @@ import { Button } from 'reactstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import LeaderModal from './LeaderModal';
+import { useSpring, animated } from 'react-spring';
 
 
 const GamePanel = () => {
@@ -11,6 +12,17 @@ const GamePanel = () => {
     const [finalStreak, setFinalStreak] = useState(0);
     const [countryNameDisplay, setCountryNameDisplay] = useState('none');
     const [showModal, setShowModal] = useState(false);
+    const [toggle, setToggle] = useState(false);
+
+    const animatedStyle = useSpring({
+        opacity: toggle ? 1 : 0,
+        transform: toggle ? 'scale(1,1)' : 'scale(0.5,0.6)',
+        config: { duration: 1100 }
+    });
+
+    useEffect(() => {
+        setToggle(true);
+    }, [])
 
     useEffect(() => {
         const getRandomCountry = async () => {
@@ -117,93 +129,96 @@ const GamePanel = () => {
 
     return (
         <div className='gamePanel'>
-            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} /> )}
+            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} />)}
 
             {currentCountry ? (
                 !showModal && (
-                <div>
-                    <div id='currentStreakDiv'>
-                        <p id='currentStreakDisplay'>
-                            Current Streak: <span style={{ color: 'lime', fontSize: '1.8rem' }}>{currentStreak}</span>
-                        </p>
-                    </div>
-                    <div className='nextCountryDiv'>
-                        <Button
-                            style={{ display: 'none' }}
-                            id='nextCountryBtn'
-                            onClick={handleNextCountry}
-                        >
-                            Next Country
-                        </Button>
-                    </div>
+                    <div>
+                        <div id='currentStreakDiv'>
+                            <p id='currentStreakDisplay'>
+                                Current Streak: <span style={{ color: 'lime', fontSize: '1.8rem' }}>{currentStreak}</span>
+                            </p>
+                        </div>
+                        <div className='nextCountryDiv'>
+                            <Button
+                                style={{ display: 'none' }}
+                                id='nextCountryBtn'
+                                onClick={handleNextCountry}
+                            >
+                                Next Country
+                            </Button>
+                        </div>
 
-                    <div className='countryDisplayDiv'>
-                        <h3 className='countryDisplay' id='countryDisplay'>Which country am I??</h3>
-                        <h2 style={{ display: countryNameDisplay }} id='countryNameDisplay'>{currentCountry.name}</h2>
-                    </div>
+                        <div className='countryDisplayDiv'>
+                            <h3 className='countryDisplay' id='countryDisplay'>Which country am I??</h3>
+                            <h2 style={{ display: countryNameDisplay }} id='countryNameDisplay'>{currentCountry.name}</h2>
+                        </div>
 
-                    <div className='countryInfoDiv'>
-                        <ul className='countryInfoList'>
-                            <li id='flagItem'>
-                                <img className='flag' id='flag' src={currentCountry.flag} />
-                            </li>
+                        <div className='countryInfoDiv'>
+                            <ul className='countryInfoList'>
+                                <li id='flagItem'>
+                                    <animated.div style={animatedStyle} >
+                                        <img className='flag' id='flag' src={currentCountry.flag} />
+                                    </animated.div>
 
-                            {/* REMOVED AREA FOR NOW AS RESEARCH GROUP RARELY FOUND IT USEFUL */}
-                            <li className='infoItem population'>
-                                <p>
-                                    Population:
-                                    <span id='population'> {currentCountry.population}</span>
-                                </p>
-                            </li>
-                            {/* <li className='infoItem area'>
+                                </li>
+
+                                {/* REMOVED AREA FOR NOW AS RESEARCH GROUP RARELY FOUND IT USEFUL */}
+                                <li className='infoItem population'>
+                                    <p>
+                                        Population:
+                                        <span id='population'> {currentCountry.population}</span>
+                                    </p>
+                                </li>
+                                {/* <li className='infoItem area'>
                                 <p>
                                     Area:
                                     <span id='area'> {currentCountry.area} </span>
                                     square miles
                                 </p>
                             </li> */}
-                            <li className='infoItem region'>
-                                <p>
-                                    Region:
-                                    <span id='region'> {currentCountry.region} </span>
-                                </p>
-                            </li>
+                                <li className='infoItem region'>
+                                    <p>
+                                        Region:
+                                        <span id='region'> {currentCountry.region} </span>
+                                    </p>
+                                </li>
 
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
 
-                    <div className='buttonDiv'>
-                        <Button
-                            className='m-2 button'
-                            onClick={(e) =>
-                                handleButtonClick(e, currentCountry)}
-                        >
-                            {buttonNames[0]}
-                        </Button>
-                        <Button
-                            className='m-2 button'
-                            onClick={(e) =>
-                                handleButtonClick(e, currentCountry)}
-                        >
-                            {buttonNames[1]}
-                        </Button>
-                        <Button
-                            className='m-2 button'
-                            onClick={(e) =>
-                                handleButtonClick(e, currentCountry)}
-                        >
-                            {buttonNames[2]}
-                        </Button>
-                        <Button
-                            className='m-2 button'
-                            onClick={(e) =>
-                                handleButtonClick(e, currentCountry)}
-                        >
-                            {buttonNames[3]}
-                        </Button>
-                    </div>
-                </div >
-            )) :
+                        <div className='buttonDiv'>
+                            <Button
+                                className='m-2 button'
+                                onClick={(e) =>
+                                    handleButtonClick(e, currentCountry)}
+                            >
+                                {buttonNames[0]}
+                            </Button>
+                            <Button
+                                className='m-2 button'
+                                onClick={(e) =>
+                                    handleButtonClick(e, currentCountry)}
+                            >
+                                {buttonNames[1]}
+                            </Button>
+                            <Button
+                                className='m-2 button'
+                                onClick={(e) =>
+                                    handleButtonClick(e, currentCountry)}
+                            >
+                                {buttonNames[2]}
+                            </Button>
+                            <Button
+                                className='m-2 button'
+                                onClick={(e) =>
+                                    handleButtonClick(e, currentCountry)}
+                            >
+                                {buttonNames[3]}
+                            </Button>
+                        </div>
+                    </div >
+                )) :
                 <p>Loading country data</p>
             }
         </div>
