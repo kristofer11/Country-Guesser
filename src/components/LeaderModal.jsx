@@ -82,7 +82,7 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal, setCountryN
                 </Form>
                 :
                 <div>
-                    <h4>Sorry, you couldn't even get one country right! Better luck next time...</h4>
+                    <h4>Sorry, that is incorrect! Better luck next time...</h4>
                     <Form onSubmit={handleSubmit} className='leaderForm'>
                         <Button variant="primary" type="submit">
                             Try Again
