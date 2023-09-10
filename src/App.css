@@ -200,7 +200,7 @@ ul.leaderList {
     gap: 0.5rem;
     color: orangered;
     flex-wrap: wrap;
-    margin-bottom: 0 !important;
+    margin-bottom: 2rem !important;
     padding-left: 0;
 }
 
