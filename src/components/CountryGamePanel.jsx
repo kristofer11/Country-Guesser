@@ -161,20 +161,19 @@ const GamePanel = () => {
 
                                 </li>
 
-                                {/* REMOVED AREA FOR NOW AS RESEARCH GROUP RARELY FOUND IT USEFUL */}
                                 <li className='infoItem population'>
                                     <p>
                                         Population:
                                         <span id='population'> {currentCountry.population}</span>
                                     </p>
                                 </li>
-                                {/* <li className='infoItem area'>
+                                <li className='infoItem area'>
                                 <p>
                                     Area:
                                     <span id='area'> {currentCountry.area} </span>
                                     square miles
                                 </p>
-                            </li> */}
+                            </li>
                                 <li className='infoItem region'>
                                     <p>
                                         Region:
