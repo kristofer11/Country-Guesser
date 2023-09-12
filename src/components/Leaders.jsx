@@ -30,7 +30,7 @@ const Leaders = () => {
             {top10Leaders.length > 0 ? (
                 <ul className='leaderList' style={{ marginBottom: '4rem', textAlign: 'center' }}>
                     {top10Leaders.map((leader) => (
-                        <li key={leader.id}>{leader.name}: {leader.streak} <span style={{ color: 'green' }}>||</span></li>
+                        <li key={leader._id}>{leader.name}: {leader.streak} <span style={{ color: 'green' }}>||</span></li>
 
                     ))}
                 </ul>

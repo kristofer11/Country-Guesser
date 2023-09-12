@@ -43,11 +43,9 @@ const GamePanel = () => {
 
             const shuffledNames = names.sort(() => Math.random() - 0.5);
             setButtonNames(shuffledNames);
-            console.log(buttonNames)
+
         };
-
         getRandomCountry();
-
     }, []);
 
     const handleButtonClick = (e, currentCountry) => {
@@ -129,7 +127,7 @@ const GamePanel = () => {
 
     return (
         <div className='gamePanel'>
-            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} />)}
+            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} setCountryNameDisplay={setCountryNameDisplay}/>)}
 
             {currentCountry ? (
                 !showModal && (

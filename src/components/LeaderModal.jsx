@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import useLeadersData from '../features/useLeadersData';
 
-const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
+const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal, setCountryNameDisplay }) => {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
     const leadersData = useLeadersData();
@@ -38,6 +38,7 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
         setMessage('');
         handleNextCountry();
         setShowModal(false);
+        setCountryNameDisplay('none');
     };
 
     return (
@@ -45,8 +46,8 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
             {finalStreak ?
                 <Form onSubmit={handleSubmit} className='leaderForm'>
                     <h2>Nice job, your streak was {finalStreak}!</h2>
-                    <p>Enter your initials and a brief message to be added to the leader board!</p>
-                    <Form.Group controlId="formName">
+                    <p>Enter your initials to be added to the leader board</p>
+                    <Form.Group controlId="formName" className='formGroup'>
                         <Form.Label>Name </Form.Label>
                         <Form.Control
                             type="text"
@@ -58,8 +59,8 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal }) => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formMessage">
-                        <Form.Label>Message </Form.Label>
+                    <Form.Group controlId="formMessage" className='formGroup'>
+                        <Form.Label>Message (optional)</Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}

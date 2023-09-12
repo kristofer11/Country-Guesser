@@ -14,7 +14,6 @@ function App() {
             <Title />
             <GamePanel />
             <Footer />
-            <Leaders />
         </div>
     )
 }
