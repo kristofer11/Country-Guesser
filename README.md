@@ -22,7 +22,7 @@ Enjoy playing and learning with Country Guesser!
 
 ## Try It Out
 
-You can play the game [here](https://kristofer11.github.io/country-guesser).
+You can play the game [here](https://kristofer11.github.io/country-guesser/).
 
 ## Feedback and Contributions
 
