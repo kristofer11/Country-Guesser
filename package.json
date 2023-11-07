@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://country-guesser-ob82klr2x-kristofer11.vercel.app",
+  "homepage": "country-guesser-green.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
