@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kristofer11.github.io/country-guesser",
+  "homepage": "country-guesser-ob82klr2x-kristofer11.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
