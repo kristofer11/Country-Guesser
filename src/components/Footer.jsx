@@ -1,10 +1,16 @@
 import Leaders from './Leaders'
+import CommentSection from './CommentSection'
 
 const Footer = () => {
   return (
     <footer className="footer mt-auto">
-        <Leaders />        
-        <p>&copy; 2023 <a href='https://krishvattum.com' target='_blank' >K. Hvattum</a></p>
+        <Leaders />
+        <CommentSection />
+        <p style={{ marginTop: '2rem', color: '#6c757d', fontSize: '1rem' }}>
+          &copy; 2025, developed by{' '}
+          <a href="https://www.krishvattum.com/" target="_blank" rel="noreferrer">K. Hvattum</a>{' '}and{' '}
+          <a href="https://vn0.dev" target="_blank" rel="noreferrer">Vn0 (Chris)</a>
+        </p>
     </footer>
   )
 }

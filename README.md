@@ -1,29 +1,84 @@
 # Country Guesser
 
-Country Guesser is a fun and educational guessing game built with React (via Vite) and powered by the REST Countries API. Test your knowledge of countries and their regions while having a blast!
-
-<strike>Please note that the REST Countries API is expected to shut down in May 2023, so the functionality of this game may be affected after that date.</strike> As of September 2023, it appears that REST Countries API is still operational.
-
-![Country Guesser Screenshot](./src/assets/countryGuesserScreenshot.png)
+A modern, full-stack geography game where players guess countries and compete for high scores! Features a global leaderboard and comment section, all powered by a self-hosted Postgres database (Neon.tech) and a Node.js/Express backend.
 
 ## Features
+- Guess countries using up-to-date REST Countries API
+- Global leaderboard (scores saved to Postgres via backend API)
+- Comment section with CAPTCHA (comments saved to Postgres)
+- Pagination for leaderboard and comments
+- Modern, responsive UI (React + Vite)
+- Cloudflare Turnstile CAPTCHA for spam protection
 
-- **Engaging Gameplay**: Country Guesser is not just a game; it's an experience! It's designed to be enjoyable and educational, making it perfect for players of all ages.
+## Tech Stack
+- **Frontend:** React, Vite, Bootstrap
+- **Backend:** Node.js, Express, pg (Postgres client)
+- **Database:** Postgres (hosted on Neon.tech)
 
-- **Middle School Approved**: During development, this game was tested and loved by middle school students. They even maintained a leaderboard to see who could achieve the highest streak! Their valuable feedback and suggestions directly influenced the game's features.
+## Setup Instructions
 
-- **Interactive Hints**: The game offers hints to help you make an informed guess. Based on user feedback, hints include a country flag for the correct country and other region-related information.
+### 1. Clone the Repository
+```sh
+git clone https://github.com/kristofer11/Country-Guesser.git
+cd country-guesser
+```
 
-- **Visual Feedback**: Users wanted a clear indicator of whether their guess was correct or not. In response, we've added a color change in the background to make it unmistakable when you've guessed correctly.
+### 2. Install Frontend Dependencies
+```sh
+npm install
+```
 
-- **Continuous Improvements**: The game's development was a collaborative effort with its enthusiastic users. Their daily input and suggestions made it an incredibly enjoyable project to work on.
+### 3. Setup the Backend
+```sh
+cd backend
+npm install
+```
 
-Enjoy playing and learning with Country Guesser!
+#### Create a `.env` file in the `backend` directory:
+```
+DATABASE_URL=postgresql://<user>:<password>@<host>/<database>?sslmode=require
+```
+(Use your Neon.tech connection string)
 
-## Try It Out
+### 4. Create the Database Tables
+Connect to your Neon database and run:
+```sql
+CREATE TABLE scores (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  streak INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-You can play the game [here](https://kristofer11.github.io/country-guesser/).
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  author TEXT NOT NULL,
+  content TEXT NOT NULL,
+  timestamp BIGINT NOT NULL,
+  dateString TEXT
+);
+```
 
-## Feedback and Contributions
+### 5. Start the Backend
+```sh
+node index.js
+```
+The backend will run on [http://localhost:4000](http://localhost:4000)
 
-If you have any feedback, suggestions, or would like to contribute to this project, feel free to reach out. 
+### 6. Start the Frontend
+```sh
+cd ..
+npm run dev
+```
+The frontend will run on [http://localhost:5173](http://localhost:5173) (or next available port)
+
+## Environment Variables
+- `DATABASE_URL` (in `backend/.env`): Your Neon.tech Postgres connection string
+- (Optional) Cloudflare Turnstile site key in `src/config/captcha.js` for CAPTCHA
+
+## Developer Credits
+- © 2025, developed by [K. Hvattum](https://www.krishvattum.com/) and [Vn0 (Chris)](https://vn0.dev)
+
+---
+
+Enjoy playing and competing on Country Guesser! 

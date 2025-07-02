@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import axios from 'axios';
-import useLeadersData from '../features/useLeadersData';
+// import leaderboardApiService from '../services/leaderboardApi';
+
+const API_URL = 'http://localhost:4000/api/scores';
 
 const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal, setCountryNameDisplay }) => {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
-    const leadersData = useLeadersData();
+    const [error, setError] = useState('');
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -21,21 +22,28 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal, setCountryN
         try {
             const data = {
                 name: name,
-                message: message,
                 streak: finalStreak
             };
-
-            const response = await axios.post('https://country-guesser-server.onrender.com/api/leaders', data);
-            console.log('Response:', response.data);
-        } catch (error) {
-            console.error('Error:', error);
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (!res.ok) throw new Error('Failed to submit score');
+        } catch (err) {
+            setError('Failed to submit score. Please try again.');
+            return;
         }
-        console.log('Name:', name);
-        console.log('Message:', message);
-        console.log('Streak:', finalStreak);
         // Reset the form
         setName('');
         setMessage('');
+        handleNextCountry();
+        setShowModal(false);
+        setCountryNameDisplay('none');
+    };
+
+    const handleTryAgain = () => {
+        // Just restart the game without submitting anything
         handleNextCountry();
         setShowModal(false);
         setCountryNameDisplay('none');
@@ -59,35 +67,21 @@ const LeaderModal = ({ finalStreak, handleNextCountry, setShowModal, setCountryN
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formMessage" className='formGroup'>
-                        <Form.Label>Message (optional)</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={3}
-                            placeholder="Enter your message"
-                            value={message}
-                            onChange={handleMessageChange}
-                            maxLength='100'
-                        />
-                    </Form.Group>
+                    {/* Message field is optional and not sent to backend */}
 
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
-{/* NEED TO FIX LOGIC FOR 'NO THANKS' BUTTON */}
-                    {/* <Button
-                        onClick = {handleNextCountry}
-                    >
-                        No Thanks!</Button> */}
+                    {error && <div style={{ color: 'red', marginTop: '1rem' }}>{error}</div>}
                 </Form>
                 :
                 <div>
                     <h4>Sorry, that is incorrect! Better luck next time...</h4>
-                    <Form onSubmit={handleSubmit} className='leaderForm'>
-                        <Button variant="primary" type="submit">
+                    <div className='leaderForm'>
+                        <Button variant="primary" onClick={handleTryAgain}>
                             Try Again
                         </Button>
-                    </Form>
+                    </div>
                 </div>
 
             }
