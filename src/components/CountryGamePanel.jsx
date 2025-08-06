@@ -26,27 +26,39 @@ const GamePanel = () => {
 
     useEffect(() => {
         const getRandomCountry = async () => {
+            try {
+                const response = await axios.get('https://restcountries.com/v3.1/all?fields=name,flags,population,area,region');
+                const countries = response.data;
 
-            const response = await axios.get('https://restcountries.com/v2/all');
-            const countries = response.data;
-            const randomIndex = Math.floor(Math.random() * countries.length);
-            const randomCountry = countries[randomIndex];
-            setCurrentCountry(randomCountry);
+                const randomCountry = countries[Math.floor(Math.random() * countries.length)];
 
-            const names = [randomCountry.name]
-            while (names.length < 4) {
-                const randomName = countries[Math.floor(Math.random() * countries.length)].name;
-                if (!names.includes(randomName)) {
-                    names.push(randomName);
+                const simplifiedCountry = {
+                    name: randomCountry.name.common,
+                    flag: randomCountry.flags?.png || '', // fallback to empty string
+                    population: randomCountry.population,
+                    area: randomCountry.area,
+                    region: randomCountry.region,
+                };
+
+                setCurrentCountry(simplifiedCountry);
+
+                const names = [simplifiedCountry.name];
+                while (names.length < 4) {
+                    const randomName = countries[Math.floor(Math.random() * countries.length)].name.common;
+                    if (!names.includes(randomName)) {
+                        names.push(randomName);
+                    }
                 }
+
+                setButtonNames(names.sort(() => Math.random() - 0.5));
+            } catch (error) {
+                console.error('Error fetching countries:', error);
             }
-
-            const shuffledNames = names.sort(() => Math.random() - 0.5);
-            setButtonNames(shuffledNames);
-
         };
+
         getRandomCountry();
     }, []);
+
 
     const handleButtonClick = (e, currentCountry) => {
         const nextCountryBtn = document.getElementById('nextCountryBtn')
@@ -91,43 +103,61 @@ const GamePanel = () => {
         buttons.forEach(button => button.style.display = 'none')
     }
 
-    const handleNextCountry = async (e, currentCountry) => {
-        const response = await axios.get('https://restcountries.com/v2/all');
-        const countries = response.data;
-        const randomIndex = Math.floor(Math.random() * countries.length);
-        const randomCountry = countries[randomIndex];
-        setCurrentCountry(randomCountry);
-        const infoItems = document.querySelectorAll('.infoItem')
+    const handleNextCountry = async () => {
+        try {
+            const response = await axios.get('https://restcountries.com/v3.1/all?fields=name,flags,population,area,region');
+            const countries = response.data;
 
-        const names = [randomCountry.name];
-        while (names.length < 4) {
-            const randomName = countries[Math.floor(Math.random() * countries.length)].name;
-            if (!names.includes(randomName)) {
-                names.push(randomName);
+            const randomCountry = countries[Math.floor(Math.random() * countries.length)];
+
+            const simplifiedCountry = {
+                name: randomCountry.name.common,
+                flag: randomCountry.flags?.png || '',
+                population: randomCountry.population,
+                area: randomCountry.area,
+                region: randomCountry.region,
+            };
+
+            setCurrentCountry(simplifiedCountry);
+
+            const names = [simplifiedCountry.name];
+            while (names.length < 4) {
+                const randomName = countries[Math.floor(Math.random() * countries.length)].name.common;
+                if (!names.includes(randomName)) {
+                    names.push(randomName);
+                }
             }
+
+            setButtonNames(names.sort(() => Math.random() - 0.5));
+
+            // reset UI
+            const buttons = document.querySelectorAll('.button');
+            const infoItems = document.querySelectorAll('.infoItem');
+            const nextCountryBtn = document.getElementById('nextCountryBtn');
+            const countryDisplay = document.getElementById('countryDisplay');
+
+            buttons.forEach(button => {
+                button.disabled = false;
+                button.style.display = 'block';
+            });
+
+            infoItems.forEach(item => item.style.display = 'block');
+
+            if (countryDisplay) countryDisplay.textContent = 'Which country am I??';
+            if (nextCountryBtn) nextCountryBtn.style.display = 'none';
+
+            setCountryNameDisplay('none');
+            setFinalStreak(0);
+            document.body.style.backgroundColor = '#212122';
+        } catch (error) {
+            console.error('Error fetching countries:', error);
         }
+    };
 
-        const buttons = document.querySelectorAll('.button');
-        const shuffledNames = names.sort(() => Math.random() - 0.5);
-        setButtonNames(shuffledNames)
-        buttons.forEach((button) => {
-            button.disabled = false;
-        })
-
-        countryDisplay.textContent = 'Which country am I??';
-        nextCountryBtn.style.display = 'none';
-        setCountryNameDisplay('none');
-        buttons.forEach(button => button.style.display = 'block')
-        infoItems.forEach(item => item.style.display = 'block');
-
-        document.body.style.backgroundColor = '#212122'
-
-        setFinalStreak(0);
-    }
 
     return (
         <div className='gamePanel'>
-            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} setCountryNameDisplay={setCountryNameDisplay}/>)}
+            {showModal && (<LeaderModal finalStreak={finalStreak} handleNextCountry={handleNextCountry} setShowModal={setShowModal} setCountryNameDisplay={setCountryNameDisplay} />)}
 
             {currentCountry ? (
                 !showModal && (
@@ -168,12 +198,12 @@ const GamePanel = () => {
                                     </p>
                                 </li>
                                 <li className='infoItem area'>
-                                <p>
-                                    Area:
-                                    <span id='area'> {currentCountry.area} </span>
-                                    square miles
-                                </p>
-                            </li>
+                                    <p>
+                                        Area:
+                                        <span id='area'> {currentCountry.area} </span>
+                                        square miles
+                                    </p>
+                                </li>
                                 <li className='infoItem region'>
                                     <p>
                                         Region:
